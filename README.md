@@ -1,3 +1,17 @@
+<!-- TOC -->
+* [Integrating Field of View in Human-Aware Collaboration](#integrating-field-of-view-in-human-aware-collaboration)
+  * [Overview](#overview)
+  * [Installation Instructions](#installation-instructions)
+    * [Install SteamVR](#install-steamvr)
+    * [Install Oculus](#install-oculus)
+    * [Set up the Repositories](#set-up-the-repositories)
+  * [Usage](#usage)
+    * [Running the scripts](#running-the-scripts)
+    * [Runtime arguments](#runtime-arguments)
+  * [Citation](#citation)
+  * [Contact](#contact)
+<!-- TOC -->
+
 # Integrating Field of View in Human-Aware Collaboration #
 
 ## Overview ##
