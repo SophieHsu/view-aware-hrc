@@ -14,8 +14,11 @@ def launch_in_terminal(venv_path, script_path, args):
 
     if platform.system() == "Windows":
         terminal_command = ["cmd.exe", "/c", f"start cmd.exe /k {command}"]
-    elif platform.system() == "Linux" or platform.system() == "Darwin":
+    elif platform.system() == "Linux":
         terminal_command = ["gnome-terminal", "--", "bash", "-c", f"{command}; exec bash"]
+    elif platform.system() == "Darwin":
+        escaped_command = command.replace('"', '\\"')
+        terminal_command = ["osascript", "-e", f'tell application "Terminal" to do script "{escaped_command}"']
     else:
         raise NotImplementedError(f"Unsupported platform: {platform.system()}")
 
@@ -25,16 +28,16 @@ if __name__ == "__main__":
     current_dir_path = os.path.dirname(os.path.abspath(__file__))
 
     # Paths to virtual environments
-    venv1_path = os.path.join(current_dir_path, "")
-    venv2_path = os.path.join(current_dir_path, "")
+    venv1_path = os.path.join(current_dir_path, "vr_kitchen", "venv")
+    venv2_path = os.path.join(current_dir_path, "fov_aware_planner", "venv")
 
     # Paths to Python scripts
     script1_path = os.path.join(current_dir_path, "vr_kitchen", "main.py")
     script2_path = os.path.join(current_dir_path, "fov_aware_planner", "overcooked_ai_py", "steak_api_test.py")
 
-    # Command-line arguments for each script
-    script1_args = ["--arg1", "value1", "--arg2", "value2"]
-    script2_args = ["--param1", "valueA", "--param2", "valueB"]
+    # Command line arguments for each script
+    script1_args = ["-m", "vr", "-c", "steak_mid_2.tml"]
+    script2_args = ["-l", "steak_mid_2", "-v", "1"]
 
     try:
         launch_in_terminal(venv1_path, script1_path, script1_args)
