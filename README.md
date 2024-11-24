@@ -52,7 +52,8 @@ python3 launch.py
 ```
 
 ### Runtime arguments ###
-TODO: write this section
+The `launch.py` file proves launch config in the `__LAUNCH_CONFIG` var which can be updated to change the 
+arguments used to run the individual scripts. A brief description of the launch argument is also provided in the file.
 
 ## Citation ##
 Please cite this work using the following BibTex:
