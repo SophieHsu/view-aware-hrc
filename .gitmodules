@@ -1,0 +1,6 @@
+[submodule "fov_aware_planner"]
+	path = fov_aware_planner
+	url = git@github.com:SophieHsu/FOV-aware-planner
+[submodule "vr_kitchen"]
+	path = vr_kitchen
+	url = git@github.com:SophieHsu/3d-plan-eval
