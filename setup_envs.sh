@@ -1,5 +1,4 @@
-#!/bin/bash
-set -e
+#!/bin/bash -e
 
 setup_venv() {
     local repo_dir=$1
@@ -20,6 +19,9 @@ setup_venv() {
     deactivate
     cd - > /dev/null
 }
+
+# Remove virtual environments recursively
+# find . -type d -name "venv" -exec rm -r {} \;
 
 # Set up virtual environments for each repository
 echo "starting setup for vr_kitchen..."
