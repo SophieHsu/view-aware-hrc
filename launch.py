@@ -2,6 +2,35 @@ import subprocess
 import os
 import platform
 
+__current_dir_path = os.path.dirname(os.path.abspath(__file__))
+
+__LAUNCH_CONFIG = [
+    (  # vr_kitchen
+        # venv path
+        os.path.join(__current_dir_path, "vr_kitchen", "venv"),
+        # script path
+        os.path.join(__current_dir_path, "vr_kitchen", "main.py"),
+        # launch args
+        [
+            "--mode", "vr",  # ['headless', 'headless_tensor', 'gui_non_interactive', 'gui_interactive', 'vr']
+            "--kitchen", "none",  # file path of the kitchen layout
+            "--config", "steak_mid_2.tml",  # name of the config file
+            # "--practice",  # Flag to indicate whether this is a practice session
+        ]
+    ),
+    (  # fov_aware_planner
+        # venv_path
+        os.path.join(__current_dir_path, "fov_aware_planner", "venv"),
+        # script path
+        os.path.join(__current_dir_path, "fov_aware_planner", "overcooked_ai_py", "steak_api_test.py"),
+        # launch args
+        [
+            "--layout", "steak_mid_2",  # name of the layout map to load
+            "--vision", "1",  # 0 for fov unaware and 1 for fov aware robot agent
+        ]
+    )
+]
+
 
 def launch_in_terminal(venv_path, script_path, args):
     python_executable = os.path.join(venv_path, "Scripts", "python.exe") if platform.system() == "Windows" \
@@ -25,23 +54,9 @@ def launch_in_terminal(venv_path, script_path, args):
     subprocess.Popen(terminal_command)
 
 if __name__ == "__main__":
-    current_dir_path = os.path.dirname(os.path.abspath(__file__))
-
-    # Paths to virtual environments
-    venv1_path = os.path.join(current_dir_path, "vr_kitchen", "venv")
-    venv2_path = os.path.join(current_dir_path, "fov_aware_planner", "venv")
-
-    # Paths to Python scripts
-    script1_path = os.path.join(current_dir_path, "vr_kitchen", "main.py")
-    script2_path = os.path.join(current_dir_path, "fov_aware_planner", "overcooked_ai_py", "steak_api_test.py")
-
-    # Command line arguments for each script
-    script1_args = ["-m", "vr", "-c", "steak_mid_2.tml"]
-    script2_args = ["-l", "steak_mid_2", "-v", "1"]
-
     try:
-        launch_in_terminal(venv1_path, script1_path, script1_args)
-        launch_in_terminal(venv2_path, script2_path, script2_args)
+        launch_in_terminal(*__LAUNCH_CONFIG[0])
+        launch_in_terminal(*__LAUNCH_CONFIG[1])
 
         print("Both processes have been launched in separate terminals.")
 
