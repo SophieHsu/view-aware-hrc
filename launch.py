@@ -8,8 +8,10 @@ __LAUNCH_CONFIG = [
     (  # vr_kitchen
         # venv path
         os.path.join(__current_dir_path, "vr_kitchen", "venv"),
+        # script directory
+        os.path.join(__current_dir_path, "vr_kitchen"),
         # script path
-        os.path.join(__current_dir_path, "vr_kitchen", "main.py"),
+        "main.py",
         # launch args
         [
             "--mode", "vr",  # ['headless', 'headless_tensor', 'gui_non_interactive', 'gui_interactive', 'vr']
@@ -19,10 +21,12 @@ __LAUNCH_CONFIG = [
         ]
     ),
     (  # fov_aware_planner
-        # venv_path
+        # venv path
         os.path.join(__current_dir_path, "fov_aware_planner", "venv"),
+        # script directory
+        os.path.join(__current_dir_path, "fov_aware_planner", "overcooked_ai_py"),
         # script path
-        os.path.join(__current_dir_path, "fov_aware_planner", "overcooked_ai_py", "steak_api_test.py"),
+        "steak_api_test.py",
         # launch args
         [
             "--layout", "steak_mid_2",  # name of the layout map to load
@@ -32,14 +36,14 @@ __LAUNCH_CONFIG = [
 ]
 
 
-def launch_in_terminal(venv_path, script_path, args):
+def launch_in_terminal(venv_path, script_dir, script_name, args):
     python_executable = os.path.join(venv_path, "Scripts", "python.exe") if platform.system() == "Windows" \
         else os.path.join(venv_path, "bin", "python")
 
     if not os.path.exists(python_executable):
         raise FileNotFoundError(f"Python executable not found in virtual environment: {python_executable}")
 
-    command = f'"{python_executable}" "{script_path}" ' + " ".join(args)
+    command = f'cd "{script_dir}" && "{python_executable}" "{script_name}" ' + " ".join(args)
 
     if platform.system() == "Windows":
         terminal_command = ["cmd.exe", "/c", f"start cmd.exe /k {command}"]
@@ -55,10 +59,10 @@ def launch_in_terminal(venv_path, script_path, args):
 
 if __name__ == "__main__":
     try:
-        launch_in_terminal(*__LAUNCH_CONFIG[0])
-        launch_in_terminal(*__LAUNCH_CONFIG[1])
+        for config in __LAUNCH_CONFIG:
+            launch_in_terminal(*config)
 
-        print("Both processes have been launched in separate terminals.")
+        print("All processes have been launched in separate terminals.")
 
     except Exception as e:
         print(f"[ERROR]:\n{e}")
