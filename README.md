@@ -40,9 +40,9 @@ Install the SteamVR (found [here](https://store.steampowered.com/app/250820/Stea
 ### Set up the Repositories ###
 Clone the project using: 
 ```
-git clone git@github.com/SophieHsu/view-aware-hrc.git
+git clone --recurse-submodules git@github.com/SophieHsu/view-aware-hrc.git
 or
-git clone https://github.com/SophieHsu/3d-plan-eval
+git clone --recurse-submodules https://github.com/SophieHsu/3d-plan-eval
 ```
 
 This will clone this repository along with the necessary repositories as submodules.
