@@ -54,6 +54,7 @@ def run_and_monitor(command, max_retries, relaunch_interval):
             print(f"Launching attempt {tries}/{max_retries}: {command}")
             process = subprocess.Popen(command, shell=True)
             process.wait()
+
             if process.returncode == 0:
                 print(f"Process completed successfully: {command}")
                 break
