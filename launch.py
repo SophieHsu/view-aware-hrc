@@ -1,8 +1,8 @@
+import os
+import platform
 import subprocess
 import threading
 import time
-import os
-import platform
 
 __current_dir_path = os.path.dirname(os.path.abspath(__file__))
 
