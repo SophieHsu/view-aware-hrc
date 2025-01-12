@@ -19,6 +19,7 @@ __LAUNCH_CONFIG = [
             "--mode", "vr",  # ['headless', 'headless_tensor', 'gui_non_interactive', 'gui_interactive', 'vr']
             "--kitchen", "none",  # file path of the kitchen layout
             "--config", "steak_mid_2.tml",  # name of the config file
+            "--vision", "1",  # 0 for fov unaware and 1 for fov aware robot agent
         ],
         # retry args
         (
