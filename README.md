@@ -64,6 +64,7 @@ Launch the planner and the VR kitchen environment using the following command.
 ```
 python3 launch.py
 ```
+You can analyze the run by copying the entire log folder (e.g. 3d-plan-eval/src/logs/{id}) to [here](https://github.com/SophieHsu/FOV-aware-planner/tree/main/overcooked_ai_py/data/logs/vr_study_logs) and follow the steps described [here](https://github.com/SophieHsu/FOV-aware-planner/blob/main/README.md#vr-study-log-analysis-instructions).
 
 ### Runtime arguments ###
 The `launch.py` file proves launch config in the `__LAUNCH_CONFIG` var which can be updated to change the 
