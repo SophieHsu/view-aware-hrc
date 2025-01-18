@@ -218,8 +218,18 @@ if __name__ == "__main__":
 
         print("All processes have been launched and are being monitored.")
 
+        recorder1 = Recorder(**__SCREEN_RECORDING_CONFIG['VR'])
+        recorder2 = Recorder(**__SCREEN_RECORDING_CONFIG['PLANNER'])
+
+        recorder1.start_recording()
+        recorder2.start_recording()
+
         while threading.active_count() > 1:
             time.sleep(1)
 
     except Exception as e:
         print(f"[ERROR]:\n{e}")
+
+    finally:
+        recorder1.stop_recording()
+        recorder2.stop_recording()
