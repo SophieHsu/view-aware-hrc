@@ -212,20 +212,17 @@ def launch_in_terminal(venv_path, script_dir, script_name, launch_args, retry_ar
     thread.start()
 
 if __name__ == "__main__":
-    recorders = []
     try:
         for config in __LAUNCH_CONFIG:
             launch_in_terminal(*config)
 
         print("All processes have been launched and are being monitored.")
 
-        recorders = [
-            Recorder(**__SCREEN_RECORDING_CONFIG['VR']),
-            Recorder(**__SCREEN_RECORDING_CONFIG['PLANNER'])
-        ]
+        recorder1 = Recorder(**__SCREEN_RECORDING_CONFIG['VR'])
+        recorder2 = Recorder(**__SCREEN_RECORDING_CONFIG['PLANNER'])
 
-        for recorder in recorders:
-            recorder.start_recording()
+        recorder1.start_recording()
+        recorder2.start_recording()
 
         while threading.active_count() > 1:
             time.sleep(1)
@@ -234,5 +231,5 @@ if __name__ == "__main__":
         print(f"[ERROR]:\n{e}")
 
     finally:
-        for recorder in recorders:
-            recorder.stop_recording()
+        recorder1.stop_recording()
+        recorder2.stop_recording()
