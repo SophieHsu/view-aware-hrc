@@ -73,7 +73,12 @@ arguments used to run the individual scripts. A brief description of the launch 
 ## Citation ##
 Please cite this work using the following BibTex:
 ```
-Coming soon
+@inproceedings{hsu2025integrating,
+  title={Integrating Field of View in Human-Aware Collaborative Planning},
+  author={Hsu, Ya-Chuan and Defranco, Michael and Patel, Rutvik and Nikolaidis, Stefanos},
+  booktitle={Proceedings of the International Conference on Robotics and Automation (ICRA). IEEE},
+  year={2025}
+}
 ```
 
 ## Contact ##
